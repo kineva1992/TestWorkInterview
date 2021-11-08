@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExerciseVsw.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExerciseVsw
 {
@@ -23,7 +25,13 @@ namespace ExerciseVsw
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connections = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DbContextPipe>(options => 
+            options.UseSqlServer(connections));
+            
             services.AddControllersWithViews();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

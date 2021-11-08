@@ -45,5 +45,7 @@ namespace ExerciseVsw.Models
         /// </summary>
         public string Note { get; set; }
 
+        public int TargetDiametrsID { get; set; }
+        public TargetExternalDiametrOfTipe TargetExternalDiametrOfTipe { get; set; }
     }
 }
