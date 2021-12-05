@@ -1,0 +1,67 @@
+﻿@model VswTask.Models.BasicModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Изменить</h1>
+
+<h4>Измениь запись</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NumberTube" class="control-label"></label>
+                <input asp-for="NumberTube" class="form-control" />
+                <span asp-validation-for="NumberTube" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasuredDiameter1" class="control-label"></label>
+                <input asp-for="MeasuredDiameter1" class="form-control" />
+                <span asp-validation-for="MeasuredDiameter1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasuredDiameter2" class="control-label"></label>
+                <input asp-for="MeasuredDiameter2" class="form-control" />
+                <span asp-validation-for="MeasuredDiameter2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasuredDiameter3" class="control-label"></label>
+                <input asp-for="MeasuredDiameter3" class="form-control" />
+                <span asp-validation-for="MeasuredDiameter3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxDeviation" class="control-label"></label>
+                <input asp-for="MaxDeviation" class="form-control" />
+                <span asp-validation-for="MaxDeviation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <textarea asp-for="Note" class="form-control" ></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="TargetDiameterId" class="control-label"></label>
+                <select asp-for="TargetDiameterId" class="form-control" asp-items="ViewBag.TargetDiametersId">
+                    <option value="">-- Select Department --</option>
+                </select>
+                <span asp-validation-for="TargetDiameterId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">На главную</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

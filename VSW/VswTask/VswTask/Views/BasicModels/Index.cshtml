@@ -1,0 +1,97 @@
+﻿@using VswTask.Injection
+@*@model IEnumerable<VswTask.Models.BasicModel>*@
+@*@model PagedList.IPagedList<VswTask.Models.BasicModel>*@
+@model PaginatedList<VswTask.Models.BasicModel>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.NumberTube)*@
+                Номер трубы
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MeasuredDiameter1)*@
+                Целевой внешний диаметр трубы, мм
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MeasuredDiameter2)*@
+                Измеренный внешний диаметр по концу трубы 1, мм
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MeasuredDiameter3)*@
+                Измеренный внешний диаметр по концу трубы 2, мм
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MaxDeviation)*@
+                Максимальное отклонение измеренных диаметров от целевого, мм
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Note)*@
+                Примечание
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.TargetOuterDiameter)*@
+                Номенклатура трубы
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberTube)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasuredDiameter1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasuredDiameter2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasuredDiameter3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxDeviation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetOuterDiameter.TargetOuterDiameters)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Узнать детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+asp-asp-route-pageNumber="@(Model.PageIndex - 1)"
+class="btn btn-default @prevDisabled">
+Previous
+</a>
+<a asp-action="Index"
+asp-route-pageNumber="@(Model.PageIndex + 1)"
+class="btn btn-default @nextDisabled">
+Next
+</a>
